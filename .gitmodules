@@ -1,3 +1,9 @@
 [submodule "component_framework"]
 	path = component_framework
 	url = https://www.github.com/capslockqq/component_framework
+[submodule "simulation_framework"]
+	path = simulation_framework
+	url = https://www.github.com/capslockqq/simulation_framework
+[submodule "freertos_distro"]
+	path = freertos_distro
+	url = https://www.github.com/capslockqq/freertos_distro
