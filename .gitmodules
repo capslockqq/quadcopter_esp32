@@ -1,0 +1,3 @@
+[submodule "component_framework"]
+	path = component_framework
+	url = https://www.github.com/capslockqq/component_framework
