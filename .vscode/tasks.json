@@ -1,0 +1,47 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cd build_pc && cmake -DBUILD_TYPE=PC .. && make ",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build & Run",
+            "type": "shell",
+            "command": "cd build_pc && cmake -DBUILD_TYPE=PC .. && make && cd pc && ./pc_program",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build & test",
+            "type": "shell",
+            "command": "cd build_pc && cmake -DBUILD_TYPE=PC .. && make && cd .. && cd build_unittest && cmake -DBUILD_TYPE=UNITTEST .. && make && cd unittest && ./unittest",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build Target",
+            "type": "shell",
+            "command": "cd build_target && cmake -DBUILD_TYPE=TARGET .. && make ",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

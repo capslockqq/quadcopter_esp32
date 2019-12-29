@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Compile PC Stage') {
+            steps {
+                sh 'mkdir -p build_pc && cd build_pc && cmake -DBUILD_TYPE=PC .. && make'
+            }
+        }
+        stage ('Run PC Stage') {
+            steps {
+                sh 'cd build_pc && cd pc && ./pc_program'
+            }
+        }
+        stage ('Unit test Stage') {
+            steps {
+                sh 'mkdir -p build_unittest && cd build_unittest && cmake -DBUILD_TYPE=UNITTEST .. && make && cd unittest && ./unittest'
+            }
+        }
+        
+        stage ('Compile Target Stage') {
+            steps {
+                sh 'mkdir -p build_target && cd build_target && cmake -DBUILD_TYPE=TARGET .. && make'
+            }
+        }
+        
+        stage ('Program Target Stage') {
+            steps {
+                sh 'cd flash && sudo chmod 666 /dev/ttyACM0 && sudo chmod +x output_script.sh && sed -i -e "s/\r$//" output_script.sh && sudo ./output_script.sh'
+            }
+        }
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "configurations": [{
+        "name": "Linux",
+        "includePath": [
+            "${workspaceFolder}/**",
+            "${workspaceFolder}/*",
+            "/usr/include/**",
+            "/usr/lib/avr/include/avr",
+            "${workspaceFolder}/FreeRTOS_Linux/source/portable",
+            "/usr/include",
+            "/usr/lib/avr/include",
+            "/usr/include/c++/7"
+        ],
+        "defines": [
+            "PC=1",
+            "__AVR_ATmega328P__"
+        ],
+        "cStandard": "c11",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "gcc-x64",
+        "compilerPath": "/usr/bin/gcc"
+    }],
+    "version": 4
+}

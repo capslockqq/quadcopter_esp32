@@ -3,20 +3,20 @@
 #include <iostream>
 #include <string.h>
 
-#include "../application_code/components/Input.hpp"
-#include "../application_code/components/Output.hpp"
-#include "../application_code/components/Component.hpp"
-#include "../application_code/components/ParameterWrite.hpp"
+#include "../../component_framework/components/Input.hpp"
+#include "../../component_framework/components/Output.hpp"
+#include "../../component_framework/components/Component.hpp"
+#include "../../component_framework/components/ParameterWrite.hpp"
 
-#include "../application_code/components/Binds.hpp"
-#include "../FreeRTOS_tasks/tasks.hpp"
-#include "../application_code/components/Singleton.hpp"
-#include "../application_code/components/OutputObserver.hpp"
-#include "../application_code/interface.hpp"
-#include "../application_code/implementation.hpp"
-#include "../application_code/components/type_name.hpp"
+#include "../../component_framework/components/Binds.hpp"
+#include "../../freertos_distro/FreeRTOS_tasks/tasks.hpp"
+#include "../../component_framework/components/Singleton.hpp"
+#include "../../component_framework/components/OutputObserver.hpp"
+#include "../../component_framework/interface.hpp"
+#include "../../component_framework/implementation.hpp"
+#include "../../component_framework/components/type_name.hpp"
 
-#include "../quadcopter_simulation/quadcopter_simulation.hpp"
+#include "quadcopter_model/quadcopter_simulation.hpp"
 SingletonLogging *SingletonLogging::instance = 0;
 OutputObserver *OutputObserver::instance = 0;
 ParameterWrite *ParameterWrite::instance = 0;
