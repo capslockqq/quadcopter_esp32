@@ -11,7 +11,7 @@ target_link_libraries(  pc_program
                         pc-application_code_communication 
                         pc-application_code_protocols
                         application_code_control
-                        simulation_quadcopter
+                        simulation_model
                         pc-application_code_transport_layer
                         Free_RTOS_Linux      
 )

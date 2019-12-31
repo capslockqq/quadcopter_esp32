@@ -15,7 +15,7 @@
 #include "../../component_framework/interface.hpp"
 #include "../../component_framework/implementation.hpp"
 #include "../../component_framework/components/type_name.hpp"
-
+#include "../application_code/application_code.hpp"
 #include "quadcopter_model/quadcopter_simulation.hpp"
 SingletonLogging *SingletonLogging::instance = 0;
 OutputObserver *OutputObserver::instance = 0;
@@ -50,8 +50,9 @@ int main(int argc, char * argv[])
 
    OutputObserver *L = OutputObserver::GetInstance();
    ParameterWrite  *paramwrite = ParameterWrite::GetInstance();
-
-   Tasks tasks;
+   I_application_code *app = new Application_code("Quadcopter", "QUAD");
+   I_application_simulation *sim = new quadcopter_model("Simulation", "SIM");
+   Tasks tasks(app, sim);
 
 
    auto unique_ids = Component::get_all_unique_ids_as_map();

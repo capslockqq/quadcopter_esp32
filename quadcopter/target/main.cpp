@@ -2,17 +2,18 @@
 #include <avr/io.h>
 #define F_CPU 16000000UL // 16 MHz clock speed
 #include <stdio.h>
-#include "../FreeRTOS_avr/include/FreeRTOS.h"
-#include "../FreeRTOS_avr/include/task.h"
+#include "../../freertos_distro/FreeRTOS_avr/include/FreeRTOS.h"
+#include "../../freertos_distro/FreeRTOS_avr/include/task.h"
 #include "communication/transport_layer/UART.hpp"
 #include "operators.h"
 #include "../../component_framework/components/ParameterWrite.hpp"
-#include "../FreeRTOS_tasks/tasks.hpp"
+#include "../../freertos_distro/FreeRTOS_tasks/tasks.hpp"
 #include "../../component_framework/components/Binds.hpp"
 #define BUAD    9600
 #define BRC     ((F_CPU/8/BUAD) - 1)
 #include "../../component_framework/interface.hpp"
 #include "../../component_framework/implementation.hpp"
+#include "../../freertos_distro/FreeRTOS_tasks/Application_interfaces.hpp"
 #include <string.h>
 void appendSerial(char c);
 void serialWrite(const char *c);
@@ -36,7 +37,8 @@ int main(void)
 	strcpy(buf, one);
 	strcat(buf, two);
 	InitUART();
-	Tasks tasks;
+	I_application_code *app = new Application_code("Application", "App");
+	Tasks tasks(app);
 	ParameterWrite *something = ParameterWrite::GetInstance();
    	tasks.SetUp_Tasks(tasks);
 	

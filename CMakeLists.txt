@@ -10,8 +10,8 @@
 ##########################################################################
 
 cmake_minimum_required(VERSION 2.8)
+cmake_policy(SET CMP0054 OLD)
 SET(BUILD_TYPE "PC" CACHE STRING "TARGET")
-
 
 if(BUILD_TYPE STREQUAL "TARGET")
 message(${BUILD_TYPE})
@@ -124,13 +124,17 @@ message(${BUILD_TYPE})
   ##########################################################################
   # include search paths
   ##########################################################################
-  include_directories(${AVR-CPP-EXAMPLE_SOURCE_DIR}/application_code)
-  include_directories(FreeRTOS_avr/include)
-  include_directories(FreeRTOS_avr/source/portable)
-  add_subdirectory(application_code)
-  add_subdirectory(avr_code)
-  add_subdirectory(FreeRTOS_avr)
-  add_subdirectory(FreeRTOS_tasks)
+  include_directories(freertos_distro/FreeRTOS_avr)
+    include_directories(freertos_distro/FreeRTOS_avr/include)
+    include_directories(freertos_distro/FreeRTOS_avr/source/portable)
+    include_directories(freertos_distro/FreeRTOS_avr/source)
+
+    add_subdirectory(freertos_distro/FreeRTOS_tasks)
+
+    add_subdirectory(component_framework)
+    add_subdirectory(freertos_distro/FreeRTOS_avr)
+    add_subdirectory(${PRJ_NAME}/application_code)
+    add_subdirectory(${PRJ_NAME}/target)
 
 
 
@@ -153,9 +157,9 @@ message(${BUILD_TYPE})
     add_subdirectory(component_framework)
     add_subdirectory(freertos_distro/FreeRTOS_Linux)
     add_subdirectory(freertos_distro/FreeRTOS_tasks)
-    add_subdirectory(quadcopter/simulation/quadcopter_model)
-    add_subdirectory(quadcopter/application_code)
-    add_subdirectory(quadcopter/simulation)
+    add_subdirectory(${PRJ_NAME}/simulation/quadcopter_model)
+    add_subdirectory(${PRJ_NAME}/application_code)
+    add_subdirectory(${PRJ_NAME}/simulation)
 
 
   elseif(BUILD_TYPE STREQUAL "UNITTEST")
@@ -165,13 +169,17 @@ message(${BUILD_TYPE})
     set(CMAKE_CXX_COMPILER "g++")
     add_definitions("-std=c++17")
     add_definitions("-fpermissive")
-    include_directories(FreeRTOS_Linux/include)
-    include_directories(FreeRTOS_Linux/source/portable)
-    add_subdirectory(quadcopter_simulation)
-    add_subdirectory(application_code)
-    add_subdirectory(unittest)
-    add_subdirectory(FreeRTOS_Linux)
-    add_subdirectory(FreeRTOS_tasks)
+    include_directories(freertos_distro/FreeRTOS_Linux)
+    include_directories(freertos_distro/FreeRTOS_Linux/include)
+    include_directories(freertos_distro/FreeRTOS_Linux/source/portable)
+    include_directories(freertos_distro/FreeRTOS_Linux/source)
+
+    add_subdirectory(component_framework)
+    add_subdirectory(freertos_distro/FreeRTOS_Linux)
+    add_subdirectory(freertos_distro/FreeRTOS_tasks)
+    add_subdirectory(${PRJ_NAME}/simulation/quadcopter_model)
+    add_subdirectory(${PRJ_NAME}/application_code)
+    add_subdirectory(${PRJ_NAME}/simulation)
 
 
 endif()

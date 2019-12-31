@@ -4,9 +4,9 @@
 #include "drone_control.hpp"
 #include "../../component_framework/components/Parameter.hpp"
 #ifdef TARGET
-#include "../avr_code/operators.h"
+#include "../../component_framework/operators.h"
 #include <avr/io.h>
-#include "../avr_code/communication/transport_layer/UART.hpp"
+#include "../target/communication/transport_layer/UART.hpp"
 
 #define COM_TO_PC UART
 #define COM_TO_IMU UART
@@ -24,13 +24,12 @@
 
 #include <stdio.h>
 #include <iostream>
-
 #define COM_TO_IMU I2C_fake
 #define COM_TO_PC  UART_fake
 
 #endif
-
-class Application_code : public Component {
+#include "../../freertos_distro/FreeRTOS_tasks/Application_interfaces.hpp"
+class Application_code : public I_application_code, public Component {
 public:
     Application_code(const char* name, const char * id);
     virtual ~Application_code(){};

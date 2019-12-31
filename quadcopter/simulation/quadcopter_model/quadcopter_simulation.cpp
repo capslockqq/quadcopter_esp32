@@ -24,7 +24,7 @@ void quadcopter_model::init() {
 
 }
 
-void quadcopter_model::update() {
+void quadcopter_model::Update() {
     brushless_dc_motor_1.update();
     brushless_dc_motor_2.update();
     brushless_dc_motor_3.update();

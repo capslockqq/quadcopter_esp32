@@ -3,21 +3,18 @@
 #####################################################################
 add_subdirectory(communication)
 add_avr_executable(
-   Quadcopter
+   ${PRJ_NAME}
    main.cpp
    )
 
-add_avr_library(
-      operators
-      "operators.cpp"
-)
+
 #####################################################################
 # libraries to link to
 #####################################################################
 target_link_libraries(
-   Quadcopter-${AVR_MCU}.elf
-   Free_RTOS_Tasks-${AVR_MCU}
+   ${PRJ_NAME}-${AVR_MCU}.elf
    operators-${AVR_MCU}
+   Free_RTOS_Tasks-${AVR_MCU}
    application_code-${AVR_MCU}
    application_code_control-${AVR_MCU}
    application_code_communication-${AVR_MCU}

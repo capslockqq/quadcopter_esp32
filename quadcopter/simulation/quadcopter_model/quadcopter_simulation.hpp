@@ -2,6 +2,7 @@
 #pragma once
 #include "../../component_framework/components/Component.hpp"
 #include "../../component_framework/components/Output.hpp"
+#include "../../freertos_distro/FreeRTOS_tasks/Application_interfaces.hpp"
 #include "BLDC.hpp"
 
 enum POSITION : int {
@@ -10,11 +11,11 @@ enum POSITION : int {
     Z = 2
 };
 
-class quadcopter_model : public Component {
+class quadcopter_model : public I_application_simulation, public Component {
 public:
     quadcopter_model(const char*, const char*);
     void init();
-    void update();
+    void Update();
 
     BLDC brushless_dc_motor_1;
     BLDC brushless_dc_motor_2;

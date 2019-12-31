@@ -105,7 +105,7 @@ def get_ids_to_log_list(basepath):
 
 def generate_log_files(ids, basepath):
     id_files = []
-    filepath = path.abspath(path.join(basepath, "..", "..", "build_pc/pc/"))
+    filepath = path.abspath(path.join(basepath, "..", "..", "build_pc/quadcopter/simulation"))
     for id_to_log in ids:
         id_files.append(open(filepath+'/'+id_to_log+'.txt', 'r'))
     return id_files
@@ -140,7 +140,7 @@ def start_simulation(basepath, simulation_length):
 
     execute = generate_finale_executable_call(simulation_length, ids_to_log_str, simulation_story_str)
     current_path = os.path.dirname(os.path.abspath(__file__))
-    path_to_executable = 'cd ../build_pc/pc/'
+    path_to_executable = 'cd ../build_pc/quadcopter/simulation'
 
     Thread(target=test(current_path,path_to_executable,execute)).start()
     time.sleep(0.5)
