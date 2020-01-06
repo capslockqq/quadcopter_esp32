@@ -9,12 +9,26 @@
 # Matthias Kleemann
 ##########################################################################
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 cmake_policy(SET CMP0054 OLD)
-SET(BUILD_TYPE "PC" CACHE STRING "TARGET")
+message("MY_VARIABLE=${MY_VARIABLE}")
 
-if(BUILD_TYPE STREQUAL "TARGET")
-message(${BUILD_TYPE})
+if (${ESP_PLATFORM})
+  set(CMAKE_CXX_STANDARD 17)
+  set(CMAKE_CXX_STANDARD_REQUIRED on)
+  include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+  include($ENV{IDF_PATH}/tools/cmake/idf.cmake)
+  set(EXTRA_COMPONENT_DIRS "component_framework" "quadcopter/application_code" "freertos_distro/FreeRTOS_tasks")
+  idf_build_component("component_framework")
+  idf_build_component("freertos_distro/FreeRTOS_tasks")
+  idf_build_component("quadcopter/application_code")
+  #idf_build_component("quadcopter/test")
+  idf_build_component("quadcopter/main")
+
+  project(quadcopter)
+
+
+elseif(${AVR})
 
   ### TOOLCHAIN SETUP AREA #################################################
   # Set any variables used in the toolchain prior project() call. In that
@@ -124,7 +138,7 @@ message(${BUILD_TYPE})
   ##########################################################################
   # include search paths
   ##########################################################################
-  include_directories(freertos_distro/FreeRTOS_avr)
+    include_directories(freertos_distro/FreeRTOS_avr)
     include_directories(freertos_distro/FreeRTOS_avr/include)
     include_directories(freertos_distro/FreeRTOS_avr/source/portable)
     include_directories(freertos_distro/FreeRTOS_avr/source)
@@ -138,7 +152,7 @@ message(${BUILD_TYPE})
 
 
 
-  elseif(BUILD_TYPE STREQUAL "PC")
+  elseif(${PC})
     project(pc-example)
     add_definitions(-DBUILD=1 )
     add_definitions("-Os")
@@ -157,14 +171,15 @@ message(${BUILD_TYPE})
     add_subdirectory(component_framework)
     add_subdirectory(freertos_distro/FreeRTOS_Linux)
     add_subdirectory(freertos_distro/FreeRTOS_tasks)
-    add_subdirectory(${PRJ_NAME}/simulation/quadcopter_model)
-    add_subdirectory(${PRJ_NAME}/application_code)
-    add_subdirectory(${PRJ_NAME}/simulation)
+    add_subdirectory(quadcopter/simulation/quadcopter_model)
+    add_subdirectory(quadcopter/application_code)
+    add_subdirectory(quadcopter/simulation)
 
 
-  elseif(BUILD_TYPE STREQUAL "UNITTEST")
+  elseif(${UNITTEST})
     project(unittest)
     add_definitions(-DPC=1)
+    add_definitions("-Os")
     set(CMAKE_C_COMPILER "gcc")
     set(CMAKE_CXX_COMPILER "g++")
     add_definitions("-std=c++17")

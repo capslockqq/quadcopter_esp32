@@ -1,24 +1,38 @@
 {
-    "configurations": [{
+    "configurations": [
+        {
         "name": "Linux",
+        "compilerPath": "/home/aname/esp/xtensa-esp32-elf/bin/xtensa-esp32-elf-g++",
         "includePath": [
             "${workspaceFolder}/**",
-            "${workspaceFolder}/*",
-            "/usr/include/**",
-            "/usr/lib/avr/include/avr",
-            "${workspaceFolder}/FreeRTOS_Linux/source/portable",
-            "/usr/include",
-            "/usr/lib/avr/include",
-            "/usr/include/c++/7"
+            "/home/aname/esp/xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/8.2.0/include",
+            "/home/aname/esp/xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/8.2.0/include-fixed",
+            "/home/aname/esp/xtensa-esp32-elf/xtensa-esp32-elf/include",
+            "/home/aname/esp/xtensa-esp32-elf/xtensa-esp32-elf/sysroot/usr/include",
+            "/home/aname/esp/esp-idf/components/**"
         ],
         "defines": [
             "PC=1",
-            "__AVR_ATmega328P__"
+            "__AVR_ATmega328P__",
+            "CONFIG_IDF_ESP32",
+            "CONFIG_FREERTOS_HZ",
+            "ESP_PLATFORM=1"
         ],
-        "cStandard": "c11",
-        "cppStandard": "c++17",
         "intelliSenseMode": "gcc-x64",
-        "compilerPath": "/usr/bin/gcc"
-    }],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "/home/aname/esp/xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/8.2.0/include",
+                    "/home/aname/esp/xtensa-esp32-elf/lib/gcc/xtensa-esp32-elf/8.2.0/include-fixed",
+                    "/home/aname/esp/xtensa-esp32-elf/xtensa-esp32-elf/include",
+                    "/home/aname/esp/xtensa-esp32-elf/xtensa-esp32-elf/sysroot/usr/include",
+                    "/home/aname/esp/esp-idf/components/**"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+    }
+],
     "version": 4
 }

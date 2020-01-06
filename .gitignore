@@ -5,3 +5,4 @@ build_target/**
 build_unittest
 build_unittest/**
 simulation_tests/**/tmp/*
+build

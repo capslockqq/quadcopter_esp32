@@ -62,6 +62,7 @@ template <class T>
 T PID_Controller<T>::Calculate_Output(T error) {
     _output = _P_gain*error;
     op_control_signal.SetValue(_output);
+    return _output;
 }
 
 template <class T>

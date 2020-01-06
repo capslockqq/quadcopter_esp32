@@ -1,0 +1,10 @@
+menu "Quadcopter Configuration"
+
+    config SAMPLE_FREQUENCY
+        int "Sample frequency of control system"
+        range 0 1000
+        default 10
+        help
+            Sample frequency of the control system of the quadcopter
+
+endmenu
